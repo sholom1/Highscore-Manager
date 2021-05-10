@@ -15,6 +15,6 @@ exports.default = new Endpoint('fetchScores', RequestType.GET, (req, res) => {
 				(error) => res.status(500).json(error.message)
 			);
 	} catch (error) {
-		res.status.json(error.message);
+		res.status(500).json(error.message);
 	}
 });
