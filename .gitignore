@@ -64,3 +64,5 @@ node_modules/
 
 # dotenv environment variables file
 .env
+functions/config/highscore-manager-firebase-adminsdk-zewti-65f76c51ff.json
+functions/.runtimeconfig.json
