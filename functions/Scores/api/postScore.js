@@ -1,7 +1,7 @@
 const { Endpoint, RequestType } = require('firebase-backend');
 const { db } = require('../../config/firebase').default;
 
-exports.default = new Endpoint('postScore', RequestType.POST, (req, res) => {
+module.exports = (req, res, next) => {
 	const { game, playerName, score } = req.query;
 	try {
 		const entry = db.collection(game).doc();
@@ -17,10 +17,10 @@ exports.default = new Endpoint('postScore', RequestType.POST, (req, res) => {
 						status: 'success',
 						message: 'score added successfully',
 					}),
-				(error) => res.status(500).json(error.message)
+				(error) => next(error)
 			)
-			.catch((error) => res.status(500).json(error.message));
+			.catch((error) => next(error));
 	} catch (error) {
-		res.status(500).json(error.message);
+		next(error);
 	}
-});
+};

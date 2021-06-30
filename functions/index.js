@@ -3,6 +3,7 @@ const functions = require('firebase-functions');
 const express = require('express');
 const cors = require('cors');
 const app = express();
-app.use(cors({ origin: true }));
-app.use(new FunctionParser(__dirname, exports).exports);
-exports = functions.https.onRequest(app);
+
+app.use(cors({ origin: '*' }));
+app.use('/', require('./Scores/api'));
+exports.scores = functions.https.onRequest(app);
